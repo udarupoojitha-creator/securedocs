@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SecureDocs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <section id="login-view" class="card center">
+    <h1>SecureDocs</h1>
+    <p class="muted">Sign in to your document vault</p>
+    <form id="login-form">
+      <label>Username <input id="username" required autocomplete="username"></label>
+      <label>Password <input id="password" type="password" required autocomplete="current-password"></label>
+      <button type="submit">Sign in</button>
+    </form>
+    <p id="login-msg" class="msg"></p>
+  </section>
+
+  <!-- APP -->
+  <section id="app-view" hidden>
+    <header>
+      <strong>SecureDocs</strong>
+      <nav>
+        <button class="tab active" data-tab="docs">Documents</button>
+        <button class="tab" data-tab="audit" id="audit-tab" hidden>Audit log</button>
+      </nav>
+      <span><span id="who"></span> <button id="logout" class="ghost">Log out</button></span>
+    </header>
+
+    <main id="docs-tab" class="layout">
+      <aside class="card">
+        <button id="new-doc">+ New document</button>
+        <ul id="doc-list"></ul>
+        <p id="empty" class="muted" hidden>No documents visible to you.</p>
+      </aside>
+
+      <article class="card">
+        <input id="doc-title" placeholder="Title" maxlength="200">
+        <textarea id="doc-content" placeholder="Write something..." rows="12"></textarea>
+        <div class="row">
+          <button id="save">Save</button>
+          <button id="delete" class="danger">Delete</button>
+        </div>
+        <form id="share-form" class="row" hidden>
+          <input id="share-user" placeholder="Share with username" required>
+          <label class="inline"><input type="checkbox" id="share-edit"> can edit</label>
+          <button type="submit">Share</button>
+        </form>
+        <p id="doc-msg" class="msg"></p>
+      </article>
+    </main>
+
+    <main id="audit-view" class="card" hidden>
+      <div class="row"><h2>Audit log</h2><button id="refresh-audit" class="ghost">Refresh</button></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Target</th><th>Outcome</th><th>Detail</th></tr></thead>
+          <tbody id="audit-body"></tbody>
+        </table>
+      </div>
+      <p id="audit-msg" class="msg"></p>
+    </main>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
